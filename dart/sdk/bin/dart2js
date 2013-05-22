@@ -4,11 +4,12 @@
 # BSD-style license that can be found in the LICENSE file.
 
 function follow_links() {
-  while [ -h "$1" ]; do
+  a="$1"   # 1 is not a valid variable name; convert positional!
+  while [ -h "$a" ]; do
     # On Mac OS, readlink -f doesn't work.
-    1="$(readlink "$1")"
+    a="$(readlink "$a")"
   done
-  echo "$1"
+  echo "$a"
 }
 
 # Unlike $0, $BASH_SOURCE points to the absolute path of this file.
